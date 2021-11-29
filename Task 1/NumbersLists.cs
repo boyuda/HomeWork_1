@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Task_1
 {
+    //Specify protection modifier "internal" 
     class NumbersLists
     {
         public static List<String> AddToLists(int firstNumber, int secondNumber)
@@ -10,7 +11,7 @@ namespace Task_1
             //Adding all the numbers within the range to the list
             List<string> ternaryNumbers = new List<string>();
 
-            while (firstNumber<=secondNumber)
+            while (firstNumber <= secondNumber)
             {
                 ternaryNumbers.Add(TernaryNumberConverter.ToTernary(firstNumber));
                 firstNumber++;
@@ -23,21 +24,27 @@ namespace Task_1
                 var counter = 0;
                 char[] newStr = ternaryNumbers[i].ToCharArray();
 
+                //Do not need to cast to char array 
+                // foreach (var n in ternaryNumbers[i]) should work fine
                 foreach (var n in newStr)
                 {
-                   if (n=='2')
+                    if (n == '2')
                     {
                         counter++;
-                    } 
-                    
+                    }
+
                     if (counter == 2)
                     {
-                        Console.WriteLine("Two 2's in number "+ ternaryNumbers[i]);
+                        Console.WriteLine("Two 2's in number " + ternaryNumbers[i]);
+                        // This is a mistake - your code will display number even if it has
+                        // more than 2 twos, for example: "222222".
+                        // Check on big enough numbers.                   
                         break;
                     }
                 }
             }
-            return ternaryNumbers;
+            return ternaryNumbers; //This is not neccessary, your code does not use return value, 
+            // keep it void
         }
     }
 }
